@@ -1,20 +1,15 @@
-$("#currentDay").text(moment().format("dddd,MMM,Do"));
+var description = document.querySelectorAll(".description");
+var currentHour = moment().hour();
 
+$("#currentDay").text(moment().format("dddd,MMM,Do"));
 $(".saveBtn").on("click", function () {
   var text = $(this).siblings(".description").val();
   var time = $(this).parent().attr("id");
   localStorage.setItem(time, text);
 });
 
-var currentHour = moment().hour();
-
 for (i = 0; i < 10; i++) {
-  $(".container")
-    .children()
-    .eq(i)
-    .children()
-    .eq(1)
-    .val(localStorage.getItem(i + 8));
+  description[i].innerHTML = localStorage.getItem(i + 8);
 
   if (currentHour < i + 8) {
     $(".container").children().eq(i).children().eq(1).addClass("future");
