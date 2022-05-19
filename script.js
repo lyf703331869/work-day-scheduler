@@ -1,4 +1,3 @@
-var description = document.querySelectorAll(".description");
 var currentHour = moment().hour();
 
 $("#currentDay").text(moment().format("dddd,MMM,Do"));
@@ -9,7 +8,12 @@ $(".saveBtn").on("click", function () {
 });
 
 for (i = 0; i < 10; i++) {
-  description[i].innerHTML = localStorage.getItem(i + 8);
+  $(".container")
+    .children()
+    .eq(i)
+    .children()
+    .eq(1)
+    .val(localStorage.getItem(i + 8));
 
   if (currentHour < i + 8) {
     $(".container").children().eq(i).children().eq(1).addClass("future");
